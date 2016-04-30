@@ -13,7 +13,6 @@ app.controller('detailCtrl', function($scope, person) {
   $scope.person = person;
 });
 
-
 app.controller('homeCtrl', function() {
   console.log('homeCtrl!');
 });
@@ -36,4 +35,14 @@ app.controller('contactCtrl', function($scope, $state, SweetAlert) {
       }
     });
   };
+});
+
+app.controller('starwarslistCtrl', function($scope, PeopleList) {
+  console.log('starWarsListCtrl!');
+
+  PeopleList.getAll()
+  .then(peopleList => {
+    $scope.peopleList = peopleList;
+  });
+
 });

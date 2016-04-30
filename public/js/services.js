@@ -35,3 +35,24 @@ app.service('People', function($q) {
     });
   };
 });
+
+
+app.service('PeopleList', function($q) {
+  var peopleList = [{
+    name: 'Luke Skywalker',
+    height: '172'
+  }, {
+    name: 'C-3PO',
+    height: '167'
+  }, {
+    name: 'R2-D2',
+    height: '96'
+  }];
+
+  this.getAll = () => {
+    // return people;
+    return $q((resolve, reject) => {
+      resolve(peopleList)
+    });
+  };
+});

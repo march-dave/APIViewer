@@ -31,6 +31,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
+    .state('starwarslist', {
+        url: '/starwarslist',
+        templateUrl: '/html/starwarslist.html',
+        controller: 'starwarslistCtrl'
+    })
 
   $urlRouterProvider.otherwise('/');
 });
