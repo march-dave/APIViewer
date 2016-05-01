@@ -7,6 +7,9 @@
     "start": "node app.js",
     "postinstall": "bower i"
   },
+  "engines": {
+    "node": "5.10.1"
+  },
   "authors": [
     "Dave Lee <ysangy@gmail.com>"
   ],
@@ -23,6 +26,7 @@
     "angular": "^1.5.5",
     "body-parser": "^1.15.0",
     "bootstrap": "^3.3.6",
+    "bower": "^1.7.9",
     "express": "^4.13.4",
     "http": "0.0.0",
     "morgan": "^1.7.0",
