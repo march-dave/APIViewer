@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('routerApp', ['ui.router', 'oitozero.ngSweetAlert']);
+var app = angular.module('starWarsApp', ['ui.router', 'oitozero.ngSweetAlert']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
@@ -10,32 +10,94 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: '/html/home.html',
       controller: 'homeCtrl'
     })
-    .state('contact', {
-      url: '/contact',
-      templateUrl: '/html/contact.html',
-      controller: 'contactCtrl'
-    })
     .state('list', {
-      url: '/list',
+      url: '/list/:id',
       templateUrl: '/html/list.html',
       controller: 'listCtrl'
-    })
-    .state('detail', {
-      url: '/detail/:name',
-      templateUrl: '/html/detail.html',
-      controller: 'detailCtrl',
+      ,
       resolve: {
-        person: function(People, $stateParams) {
-            // return a promise which will resolve to the person
-            return People.getByName($stateParams.name);
+        starDex: function(StarWars, $stateParams) {
+          var id = $stateParams.id;
+          return StarWars.getStarDex(id);
         }
       }
     })
-    .state('starwarslist', {
-        url: '/starwarslist',
-        templateUrl: '/html/starwarslist.html',
-        controller: 'starwarslistCtrl'
+    .state('detail', {
+      url: '/detail/:id',
+      templateUrl: '/html/detail.html',
+      controller: 'detailCtrl',
+      resolve: {
+        starwars: function(StarWars, $stateParams) {
+          var id = $stateParams.id;
+          return StarWars.getById(id);
+        }
+      }
+
     })
 
-  $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/');
+
+
+
+  // .state('home', { url: '/', templateUrl: '/html/home.html', controller: 'homeCtrl' })
+  // .state('about', { url: '/about/:peopleIndex', templateUrl: '/html/about.html', controller: 'aboutCtrl' })
+
+
+
+
+
+
+    // .state('home', {
+    //   url: '/',
+    //   templateUrl: '/html/home.html',
+    //   controller: 'homeCtrl'
+    // })
+    // .state('detail', {
+    //   url: '/detail/:name',
+    //   templateUrl: '/html/detail.html',
+    //   controller: 'detailCtrl',
+    //   resolve: {
+    //     person: function(People, $stateParams) {
+    //       // return a promise which will resolve to the person
+    //       return People.getByName($stateParams.name);
+    //     }
+    //   }
+    // })
+    // .state('detail', {
+    //   url: '/detail/:name',
+    //   templateUrl: '/html/detail.html',
+    //   controller: 'detailCtrl'
+    // .state('detail', {
+    //   url: '/detail/:peopleIndex',
+    //   templateUrl: '/html/detail.html',
+    //   controller: 'detailCtrl'
+    //   // ,
+    //   // resolve: {
+    //   //   person: function(People, $stateParams) {
+    //   //     // return a promise which will resolve to the person
+    //   //     return People.getByName($stateParams.name);
+    //   //   }
+    //   // }
+    // })
+    // .state('contact', {
+    //   url: '/contact',
+    //   templateUrl: '/html/contact.html',
+    //   controller: 'contactCtrl'
+    // })
+    // .state('list', {
+    //   url: '/list',
+    //   templateUrl: '/html/list.html',
+    //   controller: 'listCtrl'
+    // })
+    // .state('starwarslist', {
+    //     url: '/starwarslist',
+    //     templateUrl: '/html/starwarslist.html',
+    //     controller: 'starwarslistCtrl'
+    // })
+    // .state('starwarsdetails', {
+    //     url: '/starwarsdetails/:peopleIndex',
+    //     templateUrl: '/html/starwarsdetails.html',
+    //     controller: 'starwarsdetailsCtrl'
+    // })
+
 });
